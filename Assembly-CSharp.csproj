@@ -56,6 +56,7 @@
      <Compile Include="Assets\QbitDataComponent.cs" />
      <Compile Include="Assets\QbitInput.cs" />
      <Compile Include="Assets\QbitMovementSystem.cs" />
+     <Compile Include="Assets\RhythmSystem.cs" />
      <Compile Include="Assets\SampleQbitInput.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Lenno/Documents/GitHub/Queuebit/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

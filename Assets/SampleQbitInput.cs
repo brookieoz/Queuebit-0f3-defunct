@@ -6,12 +6,12 @@ using Unity.Networking.Transport;
 [UpdateInGroup(typeof(ClientSimulationSystemGroup))]
 public class SampleQbitInput : ComponentSystem
 {
+    
     protected override void OnCreate()
     {
         RequireSingletonForUpdate<NetworkIdComponent>();
         RequireSingletonForUpdate<EnableQueuebitGhostReceiveSystemComponent>();
     }
-
     protected override void OnUpdate()
     {
         var localInput = GetSingleton<CommandTargetComponent>().targetEntity;
@@ -30,15 +30,15 @@ public class SampleQbitInput : ComponentSystem
         }
         var input = default(QbitInput);
         input.tick = World.GetExistingSystem<ClientSimulationSystemGroup>().ServerTick;
-        if (Input.GetKey("a"))
+        if (Input.GetKeyDown("a"))
             input.horizontal -= 1;
-        if (Input.GetKey("d"))
+        if (Input.GetKeyDown("d"))
             input.horizontal += 1;
-        if (Input.GetKey("s"))
+        if (Input.GetKeyDown("s"))
             input.vertical -= 1;
-        if (Input.GetKey("w"))
+        if (Input.GetKeyDown("w"))
             input.vertical += 1;
-        if (Input.GetKey("space"))
+        if (Input.GetKeyDown("space"))
             input.spacebarSpecial = 1;
         var inputBuffer = EntityManager.GetBuffer<QbitInput>(localInput);
         inputBuffer.AddCommandData(input);
