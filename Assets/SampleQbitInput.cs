@@ -12,6 +12,7 @@ public class SampleQbitInput : ComponentSystem
         RequireSingletonForUpdate<NetworkIdComponent>();
         RequireSingletonForUpdate<EnableQueuebitGhostReceiveSystemComponent>();
     }
+    bool localIsActive;
     protected override void OnUpdate()
     {
         var localInput = GetSingleton<CommandTargetComponent>().targetEntity;
@@ -24,22 +25,25 @@ public class SampleQbitInput : ComponentSystem
                 {
                     PostUpdateCommands.AddBuffer<QbitInput>(ent);
                     PostUpdateCommands.SetComponent(GetSingletonEntity<CommandTargetComponent>(), new CommandTargetComponent {targetEntity = ent});
+                    localIsActive = qbit.IsActive;
                 }
             });
             return;
         }
         var input = default(QbitInput);
         input.tick = World.GetExistingSystem<ClientSimulationSystemGroup>().ServerTick;
-        if (Input.GetKeyDown("a"))
-            input.horizontal -= 1;
-        if (Input.GetKeyDown("d"))
-            input.horizontal += 1;
-        if (Input.GetKeyDown("s"))
-            input.vertical -= 1;
-        if (Input.GetKeyDown("w"))
-            input.vertical += 1;
-        if (Input.GetKeyDown("space"))
-            input.spacebarSpecial = 1;
+        if (localIsActive == true) {
+            if (Input.GetKeyDown("a"))
+                input.horizontal -= 1;
+            if (Input.GetKeyDown("d"))
+                input.horizontal += 1;
+            if (Input.GetKeyDown("s"))
+                input.vertical -= 1;
+            if (Input.GetKeyDown("w"))
+                input.vertical += 1;
+            if (Input.GetKeyDown("space"))
+                input.spacebarSpecial = 1;
+        }
         var inputBuffer = EntityManager.GetBuffer<QbitInput>(localInput);
         inputBuffer.AddCommandData(input);
     }

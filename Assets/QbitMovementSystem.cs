@@ -44,12 +44,12 @@ public class QbitMovementSystem : ComponentSystem
                         }
                     }
                     qbitData.PreviousInput = 's';
-                    qbitData.IsActive = false;
+                    //qbitData.IsActive = false;
                 }
                 else { //spacebar has priority to prevent multiple inputs
                     if (input.horizontal > 0) {
                         trans.Value.x += 1; //right
-                        qbitData.IsActive = false;
+                        //qbitData.IsActive = false;
                         if (qbitData.PreviousInput == 'r') {
                             qbitData.DashingLevel += 1;
                         }
@@ -60,7 +60,7 @@ public class QbitMovementSystem : ComponentSystem
                     }
                     else if (input.horizontal < 0) {
                         trans.Value.x -= 1; //left
-                        qbitData.IsActive = false;
+                        //qbitData.IsActive = false;
                         if (qbitData.PreviousInput == 'l') {
                             qbitData.DashingLevel += 1;
                         }
@@ -71,7 +71,7 @@ public class QbitMovementSystem : ComponentSystem
                     }
                     if (input.vertical > 0) {
                         trans.Value.z += 1; //up
-                        qbitData.IsActive = false;
+                        //qbitData.IsActive = false;
                         if (qbitData.PreviousInput == 'u') {
                             qbitData.DashingLevel += 1;
                         }
@@ -82,7 +82,7 @@ public class QbitMovementSystem : ComponentSystem
                     }
                     else if (input.vertical < 0) {
                         trans.Value.z -= 1; //down
-                        qbitData.IsActive = false;
+                        //qbitData.IsActive = false;
                         if (qbitData.PreviousInput == 'd') {
                             qbitData.DashingLevel += 1;
                         }
